@@ -59,15 +59,51 @@ public class JpaMain {
 //                    .setFirstResult(5)
 //                    .setMaxResults(8)
 //                    .getResultList();
+//            for (Member member : result) {
+//                System.out.println("Member.name = "  + member.getName());
+//            }
 
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .setFirstResult(5)
-                    .setMaxResults(8)
-                    .getResultList();
+            //객체를 생성한 상태(비영속)
+//            Member member = new Member();
+//            member.setId(101L);
+//            member.setName("HelloJPA");
 
-            for (Member member : result) {
-                System.out.println("Member.name = "  + member.getName());
-            }
+//            System.out.println("=== BEFORE ===");
+//            [1차 캐시에 저장됨]
+//            em.persist(member);
+//            System.out.println("=== AFTER ===");
+//            [1차 캐시에서 조회]
+//            Member findMember1 = em.find(Member.class , 101L);
+//            Member findMember2 = em.find(Member.class , 101L);
+//            <1차 캐시로 반복 가능한 읽기(REPEATABLE READ) 등급의 트랜잭션 격리 수준을 데이터베이스가 아닌 애플리케이션 차원에서 제공>
+
+//            System.out.println("result = " + (findMember1 == findMember2));
+
+//            System.out.println("findMember.id = " + findMember.getId());
+//            System.out.println("findMember.name = " + findMember.getName());
+
+
+//            Member member1 = new Member(150L,"A");
+//            Member member2 = new Member(160L,"B");
+
+//            객체를 저장한 상태(영속)
+//            em.persist(member1);
+//            em.persist(member2);
+//
+//            회원 엔티티를 영속성 컨텍스트에서 분리, 준영속 상태
+//            em.detach(member)
+
+//            엔티티 수정
+//            Member member = em.find(Member.class, 150L);
+//            member.setName("zzzzz");
+//
+
+
+//            엔티티 삭제(객체를 삭제한 상태(삭제))
+//            Member member = em.find(Member.class , 150L);
+//            em.remove(member);
+
+            System.out.println("====================================");
 
             tx.commit(); // 트랜잭션 커밋
         } catch (Exception e){
@@ -78,3 +114,28 @@ public class JpaMain {
         emf.close();
     }
 }
+/*
+*   [영속성 컨텍스트]
+*   - JPA를 이해하는데 가장 중요한 용어
+*   - "엔티티를 영구 저장하는 환경"이라는 뜻
+*   - EntityManager.persist(entity);
+*
+*   [엔티티 매니저? 영속성 컨텍스트?]
+*   - 영속성 컨텍스트는 논리적인 개념
+*   - 눈에 보이지 않는다.
+*   - 엔티티 매니저를 통해서 영속성 컨텍스트에 접근
+*
+*   [Entity의 생명 주기]
+*   - 비영속(new/transient) : 영속성 컨텍스트와 전혀 관계가 없는 새로운 상태
+*   - 영속(managed) : 영속성 컨텍스트에 관리되는 상태
+*   - 준영속(detached) : 영속성 컨텍스트에 저장되었다가 분리된 상태
+*   - 삭제(removed) : 삭제된 상태
+*
+*   [영속성 컨텍스트의 이점]
+*   - 1차 캐시
+*   - 동일성(identity) 보장
+*   - 트랜잭션을 지원하는 쓰기 지연(transactional write-behind)
+*   - 변경 감지(Dirty Checking)
+*   - 지연 로딩(Lazy Loading)
+*
+* */
