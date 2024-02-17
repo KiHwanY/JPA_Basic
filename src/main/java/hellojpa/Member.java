@@ -1,9 +1,7 @@
 package hellojpa;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 /*
 *   [@Entity]
 *   -@Entity가 붙은 클래스는 JPA가 관리. Entity라 한다.
@@ -30,9 +28,16 @@ import jakarta.persistence.Table;
 
 @Entity //JPA가 관리할 객체
 //@Table(name = "MBR")
+//유니크 제약조건 추가
+//DDL 생성 기능은 DDL을 자동 생성할 때만 사용되고 JPA의 실행 로직에는 영향을 주지 않는다.
+//@Table(uniqueConstraints = {@UniqueConstraint(name = "NAME_AGE_UNIQUE", columnNames = {"NAME" , "AGE"})})
 public class Member {
     @Id // 데이터베이스 PK와 매핑
     private Long id;
+
+    //DDL 생성 기능
+    //제약조건 추가 : 회원 이름은 필수, 10자 초과 x
+    @Column(nullable = false, length = 10)
     private String name;
 
     public Long getId() {
