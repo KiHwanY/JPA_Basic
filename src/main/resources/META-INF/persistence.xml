@@ -36,7 +36,7 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments"  value="true"/>
             <property name="hibernate.jdbc.batch_size" value="10"/> <!-- 설정 시 사이즈만큼 모아서 DB에 한꺼번에 쿼리를 보내고 DB를 커밋한다.(버퍼링 기능)  -->
-            <!--<property name="hibernate.hbm2ddl.auto" value="create" />--><!--기존 테이블 삭제 후 다시 생성 (DROP + CREATE)-->
+            <property name="hibernate.hbm2ddl.auto" value="create" /><!--기존 테이블 삭제 후 다시 생성 (DROP + CREATE)-->
             <!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />--><!--create와 같으나 종료 시점에 테이블 DROP-->
             <!--<property name="hibernate.hbm2ddl.auto" value="update" />--><!--변경분만 반영 (운영DB에는 사용하면 안됨)-->
             <!--<property name="hibernate.hbm2ddl.auto" value="validate" />--><!--엔티티와 테이블이 정상 매핑되었는지만 확인-->

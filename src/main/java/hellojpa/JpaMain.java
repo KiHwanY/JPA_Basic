@@ -103,9 +103,14 @@ public class JpaMain {
 //            Member member = em.find(Member.class , 150L);
 //            em.remove(member);
 
-            System.out.println("====================================");
+            Member member = new Member();
+            member.setId(3L);
+            member.setUsername("C");
+            member.setRoleType(RoleType.GUEST);
 
-            tx.commit(); // 트랜잭션 커밋
+            em.persist(member);
+
+            tx.commit(); //  트랜잭션 커밋
         } catch (Exception e){
             tx.rollback();
         }finally {
