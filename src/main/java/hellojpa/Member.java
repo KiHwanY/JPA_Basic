@@ -27,15 +27,20 @@ import java.util.Date;
 *   - 권장 : Long형 + 대체키 + 키 생성전략 사용
 * */
 @Entity
+@SequenceGenerator(name = "MEMBER_SEQ_GENERATOR" , sequenceName = "member_seq" , initialValue = 1,allocationSize = 50)
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE )
     private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
     @Column(name = "name" , nullable = false) // 컬럼 매핑
     private String username;
 
+    public Member(){}
     public Long getId() {
         return id;
     }

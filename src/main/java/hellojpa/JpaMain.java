@@ -103,10 +103,35 @@ public class JpaMain {
 //            Member member = em.find(Member.class , 150L);
 //            em.remove(member);
 
-            Member member = new Member();
-            member.setUsername("C");
+//            Member member = new Member();
+//            member.setUsername("next");
+//            System.out.println("================================");
+//            em.persist(member);
+//            System.out.println("member.id = " + member.getId() );
+//            System.out.println("================================");
 
-            em.persist(member);
+            Member member1 = new Member();
+            member1.setUsername("A");
+            Member member2 = new Member();
+            member2.setUsername("B");
+            Member member3 = new Member();
+            member3.setUsername("C");
+
+            System.out.println("================================");
+
+            // DB SEQ = 1   | 1
+            // DB SEQ = 51  | 2
+            // DB SEQ = 51  | 3
+
+            em.persist(member1);
+//            em.persist(member2);
+//            em.persist(member3);
+
+            System.out.println("member1 = " + member1.getId());
+            System.out.println("member2 = " + member2.getId());
+            System.out.println("member3 = " + member3.getId());
+            System.out.println("================================");
+
 
             tx.commit(); //  트랜잭션 커밋
         } catch (Exception e){
