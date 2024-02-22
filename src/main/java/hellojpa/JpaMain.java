@@ -3,7 +3,7 @@ package hellojpa;
 import jakarta.persistence.*;
 
 import java.util.List;
-
+// 실전 예제1 - 요구사항 분석과 기본 매핑 프로젝트 생성 해야함.
 public class JpaMain {
 
     public static void main(String[] args) {
