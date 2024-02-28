@@ -63,12 +63,18 @@ public class JpaMain {
             // 조회
             Member findMember = em.find(Member.class, member.getId());
 
-            Team findTeam = findMember.getTeam();
-            System.out.println("findTeam = " + findTeam.getName());
+//            Team findTeam = findMember.getTeam();
+//            System.out.println("findTeam = " + findTeam.getName());
+//
+//            // 수정
+//            Team newTeam = em.find(Team.class, 100L);
+//            findMember.setTeam(newTeam);
 
-            // 수정
-            Team newTeam = em.find(Team.class, 100L);
-            findMember.setTeam(newTeam);
+            List<Member> members = findMember.getTeam().getMembers();
+
+            for (Member m : members) {
+                System.out.println("m = " + m.getName());
+            }
 
             tx.commit(); //  트랜잭션 커밋
         } catch (Exception e){
