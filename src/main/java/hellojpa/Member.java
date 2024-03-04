@@ -46,7 +46,7 @@ public class Member {
 
     @ManyToOne // 멤버 입장에서는 N 이고 팀은 1이기 때문에
     @JoinColumn(name = "TEAM_ID") // join 시킬 컬럼 지정
-    private Team team; // 단방향 연관관계
+    private Team team; // 단방향 연관관계 , 연관관계 주인이다.
 
 
 
@@ -73,7 +73,22 @@ public class Member {
         this.team = team;
     }
 
-//    public Long getTeamId() {
+    //자바의 getter set 관례때문에 set은 set 관련 로직 있을 때만 넣어준다.
+    // 로직이 추가 되면 네임 수정하고 사용한다.
+    public void changeTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Member{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", team=" + team +
+//                '}';
+//    }
+    //    public Long getTeamId() {
 //        return teamId;
 //    }
 //

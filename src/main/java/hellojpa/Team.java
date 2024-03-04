@@ -34,6 +34,12 @@ public class Team { // 주인이 아닌 쪽은 읽기만 가능하다.
     *   - 테이블 연관관계 = 1개
     *       - 회원 <-> 팀의 연관관계 1개(양방향)
     * */
+
+    // 연관관계 편의 메서드가 양쪽에 다 있으면 문제를 일으킬 수 있기 때문에 한 곳에만 추가해 주자.
+//    public void addMember(Member member){
+//        member.setTeam(this);
+//        members.add(member);
+//    }
     public Long getId() {
         return id;
     }
@@ -57,4 +63,14 @@ public class Team { // 주인이 아닌 쪽은 읽기만 가능하다.
     public void setMembers(List<Member> members) {
         this.members = members;
     }
+//    양방향 연관관계 주의 - 양방향 매핑 시에 무한 루프를 조심하자.
+//    특히 toString() , lombok, JSON 생성 라이브러리 - 스택 오브 플로우 확률 높다.
+//    @Override
+//    public String toString() {
+//        return "Team{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", members=" + members +
+//                '}';
+//    }
 }
