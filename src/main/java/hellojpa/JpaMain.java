@@ -16,29 +16,40 @@ public class JpaMain {
         try{
 
             //저장
-            Team team = new Team();
-            team.setName("teamA");
-            em.persist(team);
-
-            Member member = new Member();
-            member.setName("member1");
-            member.changeTeam(team);
-            em.persist(member);
-
-            em.flush(); // 영속성 컨텍스트에 있는 디비 쿼리 날려서 싱크 맞춤
-            em.clear(); // 영속성 컨텍스트 클리어
+//            Team team = new Team();
+//            team.setName("teamA");
+//            em.persist(team);
+//
+//            Member member = new Member();
+//            member.setName("member1");
+//            member.changeTeam(team);
+//            em.persist(member);
+//
+//            em.flush(); // 영속성 컨텍스트에 있는 디비 쿼리 날려서 싱크 맞춤
+//            em.clear(); // 영속성 컨텍스트 클리어
 
 
             // 조회
-            Member findMember = em.find(Member.class, member.getId());
+//            Member findMember = em.find(Member.class, member.getId());
 
 
 
-            List<Member> members = findMember.getTeam().getMembers();
+//            List<Member> members = findMember.getTeam().getMembers();
 
-            for (Member m : members) {
-                System.out.println("m = " + m.getName());
-            }
+//            for (Member m : members) {
+//                System.out.println("m = " + m.getName());
+//            }
+
+            Member1_N member = new Member1_N();
+            member.setName("member1");
+
+            em.persist(member);
+
+            Team1_N team = new Team1_N();
+            team.setName("teamA");
+            team.getMembers().add(member);
+
+            em.persist(team);
 
             tx.commit(); //  트랜잭션 커밋
         } catch (Exception e){
