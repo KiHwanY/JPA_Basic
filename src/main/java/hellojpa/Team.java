@@ -14,8 +14,8 @@ public class Team { // 주인이 아닌 쪽은 읽기만 가능하다.
 
     private String name;
 
-    @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
+//    @OneToMany(mappedBy = "team")
+//    private List<Member> members = new ArrayList<>();
 
     public Long getId() {
         return id;
