@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team { // 주인이 아닌 쪽은 읽기만 가능하다.
+public class Team extends BaseEntity{ // 주인이 아닌 쪽은 읽기만 가능하다.
 
     @Id @GeneratedValue
     @Column(name = "TEAM_ID")
