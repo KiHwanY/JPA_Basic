@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//@Entity
 public class TeamN_1 { // 주인이 아닌 쪽은 읽기만 가능하다.
 
     @Id @GeneratedValue

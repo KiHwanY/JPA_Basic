@@ -23,16 +23,16 @@ import java.util.List;
 *   - 연관관계의 주인은 외래 키의 위치를 기준으로 정해야 함
 *
 * */
-public class JpaMainMappingSection {
-
-    public static void main(String[] args) {
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
-        EntityManager em = emf.createEntityManager();
-
-        EntityTransaction tx = em.getTransaction();
-        tx.begin(); //  트랜잭션 시작
-        try{
+//public class JpaMainMappingSection {
+//
+//    public static void main(String[] args) {
+//
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+//        EntityManager em = emf.createEntityManager();
+//
+//        EntityTransaction tx = em.getTransaction();
+//        tx.begin(); //  트랜잭션 시작
+//        try{
             // 연관관계 적용 전
             // 객체를 테이블에 맞추어 모델링 (외래 키 식별자를 직접 다룸)
 //            Team team = new Team();
@@ -63,14 +63,14 @@ public class JpaMainMappingSection {
             // (연관관계 저장)
 
             //저장
-            Team team = new Team();
-            team.setName("teamA");
-            em.persist(team);
-
-            Member member = new Member();
-            member.setName("member1");
-            member.changeTeam(team);
-            em.persist(member);
+//            Team team = new Team();
+//            team.setName("teamA");
+//            em.persist(team);
+//
+//            Member member = new Member();
+//            member.setName("member1");
+//            member.changeTeam(team);
+//            em.persist(member);
             // 위 방식처럼 changeTeam 메서드에 넣어주는 Member 기준으로 하는 방식이 있고
             // 아래처럼 team에 addMember() 메서드를 생성해서 Team  기준으로 하는 방식이 있다
             // 방식은 자유다.
@@ -81,8 +81,8 @@ public class JpaMainMappingSection {
 
 
             //영속성 컨텍스트 제외 시키고 DB에서 가져오는 쿼리 확인하기
-            em.flush(); // 영속성 컨텍스트에 있는 디비 쿼리 날려서 싱크 맞춤
-            em.clear(); // 영속성 컨텍스트 클리어
+//            em.flush(); // 영속성 컨텍스트에 있는 디비 쿼리 날려서 싱크 맞춤
+//            em.clear(); // 영속성 컨텍스트 클리어
             // 플러시, 클리어를 안하면 위 코드의 데이터를 갖고 유지된 상태에서 중첩으로 들어간다.
             // 지연 로딩
 //            Team findTeam = em.find(Team.class, team.getId()); // 1차 캐시
@@ -96,7 +96,7 @@ public class JpaMainMappingSection {
 
 
             // 조회
-            Member findMember = em.find(Member.class, member.getId());
+//            Member findMember = em.find(Member.class, member.getId());
 
 //            Team findTeam = findMember.getTeam();
 //            System.out.println("findTeam = " + findTeam.getName());
@@ -105,19 +105,19 @@ public class JpaMainMappingSection {
 //            Team newTeam = em.find(Team.class, 100L);
 //            findMember.setTeam(newTeam);
 
-            List<Member> members = findMember.getTeam().getMembers();
+//            List<Member> members = findMember.getTeam().getMembers();
+//
+//            for (Member m : members) {
+//                System.out.println("m = " + m.getName());
+//            }
 
-            for (Member m : members) {
-                System.out.println("m = " + m.getName());
-            }
-
-            tx.commit(); //  트랜잭션 커밋
-        } catch (Exception e){
-            tx.rollback();
-        }finally {
-            em.close();
-        }
-        emf.close();
-    }
-}
+//            tx.commit(); //  트랜잭션 커밋
+//        } catch (Exception e){
+//            tx.rollback();
+//        }finally {
+//            em.close();
+//        }
+//        emf.close();
+//    }
+//}
 

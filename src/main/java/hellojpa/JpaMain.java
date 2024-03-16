@@ -15,41 +15,19 @@ public class JpaMain {
         tx.begin(); //  트랜잭션 시작
         try{
 
-            //저장
-//            Team team = new Team();
-//            team.setName("teamA");
-//            em.persist(team);
-//
-//            Member member = new Member();
-//            member.setName("member1");
-//            member.changeTeam(team);
-//            em.persist(member);
-//
-//            em.flush(); // 영속성 컨텍스트에 있는 디비 쿼리 날려서 싱크 맞춤
-//            em.clear(); // 영속성 컨텍스트 클리어
+            Movie movie = new Movie();
+            movie.setDirector("aaaaa");
+            movie.setActor("bbbb");
+            movie.setName("바람과함께사라지다.");
+            movie.setPrice(10000);
 
+            em.persist(movie);
 
-            // 조회
-//            Member findMember = em.find(Member.class, member.getId());
+            em.flush();
+            em.clear();
 
-
-
-//            List<Member> members = findMember.getTeam().getMembers();
-
-//            for (Member m : members) {
-//                System.out.println("m = " + m.getName());
-//            }
-
-            Member1_N member = new Member1_N();
-            member.setName("member1");
-
-            em.persist(member);
-
-            Team1_N team = new Team1_N();
-            team.setName("teamA");
-            team.getMembers().add(member);
-
-            em.persist(team);
+            Movie findMovie = em.find(Movie.class, movie.getId());
+            System.out.println("findMovie = "  + findMovie);
 
             tx.commit(); //  트랜잭션 커밋
         } catch (Exception e){

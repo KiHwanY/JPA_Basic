@@ -32,7 +32,7 @@ import jakarta.persistence.*;
 *   - 외래 키가 있는 곳을 주인으로 정해라.
 *   - 여기서 Member.team이 연관관계의 주인이다.
 * */
-@Entity
+//@Entity
 public class MemberMappingSection {
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")

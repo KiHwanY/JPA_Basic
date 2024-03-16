@@ -2,20 +2,17 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-public class Team { // 주인이 아닌 쪽은 읽기만 가능하다.
-
-    @Id @GeneratedValue
-    @Column(name = "TEAM_ID")
+@Inheritance(strategy = InheritanceType.JOINED) // Join 전략
+@DiscriminatorColumn(name = "DIS_TYPE") // Default name = DTYPE
+public class Item {
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
+    private int price;
 
-    @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -33,6 +30,11 @@ public class Team { // 주인이 아닌 쪽은 읽기만 가능하다.
         this.name = name;
     }
 
+    public int getPrice() {
+        return price;
+    }
 
-
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }

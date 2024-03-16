@@ -14,7 +14,7 @@ import java.util.List;
 *   - MEMBER.TEAM_ID 외래 키 하나로 양방향 연관관계 가짐(양쪽으로 조인할 수 있다.)
 * */
 
-@Entity
+//@Entity
 public class TeamMappingSection { // 주인이 아닌 쪽은 읽기만 가능하다.
 
     @Id @GeneratedValue

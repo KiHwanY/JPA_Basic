@@ -3,8 +3,8 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
-@Entity
-public class Member1_N extends Member {
+//@Entity
+public class Member1_N {
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;

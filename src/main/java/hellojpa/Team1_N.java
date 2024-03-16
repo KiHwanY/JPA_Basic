@@ -16,7 +16,7 @@ import java.util.List;
 *       -> 연관관계 관리를 위해 추가로 UPDATE SQL 실행
 *   - 일대다 단방향 매핑보다는 다대일 양방향 매핑을 사용하자.
 * */
-@Entity
+//@Entity
 public class Team1_N { // 주인이 아닌 쪽은 읽기만 가능하다.
 
     @Id @GeneratedValue
