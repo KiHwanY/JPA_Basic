@@ -22,7 +22,7 @@ import jakarta.persistence.OneToOne;
  *      - 단점 : 프록시 기능의 한계로 지연 로딩으로 설정해도 항상 즉시 로딩됨
  * */
 
-@Entity
+//@Entity
 public class Locker {
     @Id @GeneratedValue
     private Long id;
