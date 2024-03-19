@@ -13,10 +13,15 @@ public class Member extends BaseEntity {
 
     @Column(name = "USERNAME")
     private String name;
+//    //Member와 Team 중 하나만 조회한다면? 지연 로딩 셋팅
+    @ManyToOne(fetch =FetchType.LAZY ) // 지연 로딩 셋팅
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
-    @ManyToOne // 멤버 입장에서는 N 이고 팀은 1이기 때문에
-    @JoinColumn(name = "TEAM_ID") // join 시킬 컬럼 지정
-    private Team team; // 단방향 연관관계 , 연관관계 주인이다.
+    //Member와 Team을 같이 조회한다면? 즉시 로딩 셋팅 * 하지만실무에서는 즉시 로딩을 사용하면 안된다.
+//    @ManyToOne(fetch =FetchType.EAGER ) // 즉시 로딩 셋팅
+//    @JoinColumn(name = "TEAM_ID")
+//    private Team team;
 
     private String createdBy;
     private LocalDateTime createdLocalDate;

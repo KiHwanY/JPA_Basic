@@ -16,63 +16,38 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin(); //  트랜잭션 시작
         try{
+            Team teamA = new Team();
+            teamA.setName("teamA");
+            em.persist(teamA);
 
-//            Member member = em.find(Member.class, 1L);
-//            printMemberAndTeam(member);
-//            printMember(member);
+            Team teamB = new Team();
+            teamB.setName("teamA");
+            em.persist(teamB);
+
             Member member1 = new Member();
             member1.setName("member1");
+            member1.setTeam(teamA);
             em.persist(member1);
 
-//            Member member2 = new Member();
-//            member2.setName("member2");
-//            em.persist(member2);
-
+            Member member2 = new Member();
+            member2.setName("member2");
+            member2.setTeam(teamB);
+            em.persist(member2);
 
             em.flush();
             em.clear();
 
-//            Member m1 = em.find(Member.class, member1.getId());
-//            System.out.println("m1 = " + m1.getClass());
+            Member m = em.find(Member.class , member1.getId());
+
+            List<Member> members = em.createQuery("select m from Member m",Member.class).getResultList();
+
+//            System.out.println("m = " + m.getTeam().getClass());
 //
-//            Member reference = em.getReference(Member.class, member1.getId());
-//            System.out.println("reference = "+ reference.getClass());
-//
-//            System.out.println("a == a : "+(m1 == reference));// 항상 true
+//            System.out.println("========================");
+//            System.out.println("teamName = " + m.getTeam().getName());
+//            m.getTeam().getName(); // getName을 호출하는 순간 초기화
+//            System.out.println("========================");
 
-            Member refMember = em.getReference(Member.class, member1.getId());
-            System.out.println("refMember = " + refMember.getClass()); // Proxy
-            refMember.getName(); // 강제 초기화
-            //getPersistenceUnitUtil().isLoaded() -> 프록시 인스턴스의 초기화 여부 확인
-            System.out.println("isLoaded = " + emf.getPersistenceUnitUtil().isLoaded(refMember)); // false
-
-//            Hibernate.initialize(refMember); // 프록시 강제 초기화
-
-//            em.detach(refMember); // 영속성에서 꺼내기 , 준영속 상태
-//            em.clear();
-//            em.close();
-
-//            refMember.getName(); // 호출
-
-
-            //m1.getName(); // 프록시 초기화
-
-//            Member findMember = em.find(Member.class, member1.getId());
-//            System.out.println("findMember = "+ findMember.getClass());
-//
-//            System.out.println("refMember == findMember : "+(refMember == findMember));// 항상 true
-
-//            Member m2 = em.getReference(Member.class, member2.getId());
-
-//            logic(m1,m2);
-
-
-//            Member findMember = em.find(Member.class, member.getId());
-//            Member findMember = em.getReference(Member.class, member.getId());
-//            System.out.println("before findMember = " + findMember.getClass());
-//            System.out.println("findMember = " + findMember.getId());
-//            System.out.println("findMember.username = " + findMember.getName());
-//            System.out.println("after findMember = " + findMember.getClass());
             tx.commit(); //  트랜잭션 커밋
         } catch (Exception e){
             tx.rollback();
