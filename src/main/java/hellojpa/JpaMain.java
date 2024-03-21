@@ -63,7 +63,7 @@ public class JpaMain {
 
             Parent findParent = em.find(Parent.class, parent.getName());
             findParent.getChildList().remove(0L);
-            
+
 
 
 
