@@ -6,28 +6,21 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Member extends BaseEntity {
+public class Member {
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;
 
     @Column(name = "USERNAME")
     private String name;
-//    //Member와 Team 중 하나만 조회한다면? 지연 로딩 셋팅
-    @ManyToOne(fetch =FetchType.LAZY ) // 지연 로딩 셋팅
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
 
-    //Member와 Team을 같이 조회한다면? 즉시 로딩 셋팅 * 하지만실무에서는 즉시 로딩을 사용하면 안된다.
-//    @ManyToOne(fetch =FetchType.EAGER ) // 즉시 로딩 셋팅
-//    @JoinColumn(name = "TEAM_ID")
-//    private Team team;
+    //Period 기간
+    @Embedded
+    private Address address;
 
-    private String createdBy;
-    private LocalDateTime createdLocalDate;
-
-    private String modifiedBy;
-    private LocalDateTime modifiedLocalDate;
+    // 주소
+    @Embedded
+    private Period period;
 
     public Long getId() {
         return id;
@@ -44,12 +37,20 @@ public class Member extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
-    public Team getTeam() {
-        return team;
+
+    public Address getAddress() {
+        return address;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
+    public Period getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Period period) {
+        this.period = period;
+    }
 }

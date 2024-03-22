@@ -16,56 +16,13 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin(); //  트랜잭션 시작
         try{
-//            Team teamA = new Team();
-//            teamA.setName("teamA");
-//            em.persist(teamA);
-//
-//            Team teamB = new Team();
-//            teamB.setName("teamA");
-//            em.persist(teamB);
-//
-//            Member member1 = new Member();
-//            member1.setName("member1");
-//            member1.setTeam(teamA);
-//            em.persist(member1);
-//
-//            Member member2 = new Member();
-//            member2.setName("member2");
-//            member2.setTeam(teamB);
-//            em.persist(member2);
-//
-//            em.flush();
-//            em.clear();
-//
-//            Member m = em.find(Member.class , member1.getId());
-//
-//            List<Member> members = em.createQuery("select m from Member m",Member.class).getResultList();
 
-//            System.out.println("m = " + m.getTeam().getClass());
-//
-//            System.out.println("========================");
-//            System.out.println("teamName = " + m.getTeam().getName());
-//            m.getTeam().getName(); // getName을 호출하는 순간 초기화
-//            System.out.println("========================");
-            Child child1 = new Child();
-            Child child2 = new Child();
+            Member member = new Member();
+            member.setName("hello");
+            member.setAddress(new Address("city" , "street","100"));
+            member.setPeriod(new Period());
 
-            Parent parent = new Parent();
-
-            parent.addChild(child1);
-            parent.addChild(child2);
-
-            em.persist(parent);
-//            em.persist(child1);
-//            em.persist(child2);
-            em.flush();
-            em.clear();
-
-            Parent findParent = em.find(Parent.class, parent.getName());
-            findParent.getChildList().remove(0L);
-
-
-
+            em.persist(member);
 
 
             tx.commit(); //  트랜잭션 커밋
